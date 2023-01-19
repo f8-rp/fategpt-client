@@ -19,7 +19,7 @@ const InputBox = () => {
     const createQuery = (event) => {
         event.preventDefault();
         setQueryList([...queryList, { query }]);
-        Axios.post('http://localhost:3001/createQuery', {
+        Axios.post('https://fate-gpt-service.onrender.com/createQuery', {
             query
         }).then((res) => {
             var response = res.data[0]['text'];
