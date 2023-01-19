@@ -6,13 +6,9 @@ import LandingPage from './Land'
 import {useEffect} from 'react'
 import ImagePage from './ImagePage'
 import {CgProfile} from 'react-icons/cg'
-import {signInWithGoogle} from './config';
-import firebase from './config'
-import {logout} from './config'
 
 function App() {
   const [page, setPage] = useState('')
-  const [user, setUser] = useState(null)
 
   
 
@@ -24,12 +20,6 @@ function App() {
     if(page !== 'Image' && page !== 'Fix' && page!=='Question'){
       mount()
     }
-    else if(page === 'LoggedIn' || page=== 'LoggedIn'){
-      console.log('it ez what it ez')
-    }
-    firebase.auth().onAuthStateChanged(user => {
-      setUser(user)
-    })
   })
 
   async function mount(){
@@ -58,7 +48,7 @@ function App() {
     </div>
   )
   
-  if(page === 'Question' && user) {
+  if(page === 'Question') {
     return(
       <div className="flex">
         <NavBar />
@@ -66,7 +56,7 @@ function App() {
       </div>
     )
   }
-  else if(page === 'Image' && user){
+  else if(page === 'Image'){
     return(
       <div className="flex">
         <NavBar />
@@ -94,10 +84,6 @@ function App() {
       <LoggedOut />
     </div>
   }
-  if((page === 'Question' || page === 'Image') && !user){
-    alert('Please log in')
-    setPage('Fix')
-  }
 
   return (
     <div className="flex">
@@ -113,14 +99,12 @@ const AuthenPage = ({page}) =>{
         <h1 className = "animate-bounce text-9xl mx-auto mt-24">Profile</h1>
         
         <button onClick={()=>{
-          signInWithGoogle();
-          page('LoggedIn');
+          alert('coming soon')
         }} className=" mx-auto w-18 h-16 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded w-2/12 mt-24">
           Log In
         </button>
         <button onClick={()=>{
-          logout();
-          page('LoggedOut');
+          alert('coming soon')
         }} className=" mx-auto h-16 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded w-2/12 mt-24">
           Log Out
         </button>
